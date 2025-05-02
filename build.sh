@@ -5,14 +5,18 @@ set -eox pipefail
 sudo apt-get update -y
 sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended hevea sass
 
-git clone --depth 1 https://github.com/ocaml/ocaml
+# git clone --depth 1 https://github.com/ocaml/ocaml
 
 cd ocaml
 
-./configure --prefix $(pwd)/local
+# ./configure --prefix $(pwd)/local
 
 make -j
-PATH="$(pwd)/local/bin:$PATH" make -C manual/src/html_processing duniverse
+make install
+
+export PATH="$(pwd)/local/bin:$PATH"
+
+make -C manual/src/html_processing duniverse
 make -C manual web DISCLAIMER=1
 
 cd -
