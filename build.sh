@@ -12,7 +12,7 @@ fi
 
 cd ocaml
 
-git clean -fdx
+git clean -ffdx
 
 ./configure --prefix $(pwd)/local
 
