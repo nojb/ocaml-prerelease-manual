@@ -3,7 +3,7 @@
 set -eox pipefail
 
 sudo apt-get update -y
-sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended texlive-lualatex hevea sass
+sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended hevea sass
 
 git clone https://github.com/ocaml/ocaml
 
