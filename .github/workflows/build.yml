@@ -1,0 +1,16 @@
+name: Build
+
+on:
+  # schedule:
+  #   - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download pre-release manual
+        uses: actions/download-artifact@v4
+        with:
+          name: manual
+          repository: nojb/ocaml
