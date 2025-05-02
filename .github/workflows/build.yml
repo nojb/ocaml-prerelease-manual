@@ -15,10 +15,13 @@ jobs:
           repository: ocaml/ocaml
       - name: Configure
         run: |
-          MAKE_ARG=-j bash -xe tools/ci/actions/runner.sh configure
+          CONFIG_ARG="--prefix $(pwd)/local" bash -xe tools/ci/actions/runner.sh configure
       - name: Build OCaml
         run: |
           MAKE_ARG=-j bash -xe tools/ci/actions/runner.sh build
+      - name: Install OCaml
+        run: |
+          MAKE_ARG=-j bash -xe tools/ci/actions/runner.sh install
       - name: Install Deps
         run: |
           sudo apt-get update -y
