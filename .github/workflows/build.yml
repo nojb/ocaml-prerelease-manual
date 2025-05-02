@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PREFIX: ~/local
     steps:
       - name: Checkout OCaml
         uses: actions/checkout@v4
@@ -15,7 +17,7 @@ jobs:
           repository: ocaml/ocaml
       - name: Configure
         run: |
-          CONFIG_ARG="--prefix $(pwd)/local" bash -xe tools/ci/actions/runner.sh configure
+          bash -xe tools/ci/actions/runner.sh configure
       - name: Build OCaml
         run: |
           MAKE_ARG=-j bash -xe tools/ci/actions/runner.sh build
