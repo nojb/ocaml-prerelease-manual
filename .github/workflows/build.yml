@@ -8,8 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      PREFIX: ~/local
     steps:
       - name: Checkout OCaml
         uses: actions/checkout@v4
