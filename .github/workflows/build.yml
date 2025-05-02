@@ -13,25 +13,25 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ocaml/ocaml
-          path: ocaml
       - name: Configure
         run: |
-          MAKE_ARG=-j bash -xe ocaml/tools/ci/actions/runner.sh configure
+          MAKE_ARG=-j bash -xe tools/ci/actions/runner.sh configure
       - name: Build OCaml
         run: |
-          MAKE_ARG=-j bash -xe ocaml/tools/ci/actions/runner.sh build
+          MAKE_ARG=-j bash -xe tools/ci/actions/runner.sh build
       - name: Build Manual
         run: |
-          MAKE_ARG=-j bash -xe ocaml/tools/ci/actions/runner.sh manual
+          MAKE_ARG=-j bash -xe tools/ci/actions/runner.sh manual
       - name: Checkout Pages
         uses: actions/checkout@v4
         with:
-          repository: nojb/prerelease-manual
+          path: gh-pages
           ref: gh-pages
       - name: Deploy
+        working-directory: gh-pages
         run: |
           git rm '*'
-          mv ocaml/manual/src/webman/*/* .
+          mv ../manual/src/webman/*/* .
           { echo 'User-agent: *'; echo 'Disallow: /'; } > robots.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
