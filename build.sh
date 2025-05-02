@@ -5,7 +5,7 @@ set -eox pipefail
 sudo apt-get update -y
 sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended hevea sass
 
-git clone https://github.com/ocaml/ocaml
+git clone --depth 1 https://github.com/ocaml/ocaml
 
 cd ocaml
 
