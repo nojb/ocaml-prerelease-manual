@@ -15,7 +15,8 @@ jobs:
       - name: Checkout OCaml
         uses: actions/checkout@v4
         with:
-          repository: ocaml/ocaml
+          repository: nojb/ocaml
+          ref: trunk_manual
       - name: Configure
         run: |
           bash -xe tools/ci/actions/runner.sh configure
