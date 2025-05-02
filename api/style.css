@@ -42,6 +42,12 @@ html {
   html .footnotetext {
     font-size: 13px; }
 
+#disclaimer {
+  border: 2px solid red;
+  padding: 16px;
+  border-radius: 4px;
+  margin-bottom: 1em; }
+
 #sidebar-button {
   float: right;
   cursor: context-menu;
