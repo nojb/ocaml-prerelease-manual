@@ -12,7 +12,7 @@ cd ocaml
 ./configure --prefix $(pwd)/local
 
 make -j
-make -C manual/src/html_processing duniverse
+PATH="$(pwd)/local/bin:$PATH" make -C manual/src/html_processing duniverse
 make -C manual web DISCLAIMER=1
 
 cd -
