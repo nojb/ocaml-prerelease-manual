@@ -13,5 +13,5 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: manual
-          token: $GITHUB_TOKEN
+          github-token: $GITHUB_TOKEN
           repository: nojb/ocaml
