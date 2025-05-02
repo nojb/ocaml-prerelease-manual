@@ -19,6 +19,10 @@ jobs:
       - name: Build OCaml
         run: |
           MAKE_ARG=-j bash -xe tools/ci/actions/runner.sh build
+      - name: Install Deps
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended texlive-luatex hevea sass
       - name: Build Manual
         run: |
           MAKE_ARG=-j bash -xe tools/ci/actions/runner.sh manual
