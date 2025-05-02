@@ -25,14 +25,14 @@ jobs:
           MAKE_ARG=-j bash -xe tools/ci/actions/runner.sh build
       - name: Install OCaml
         run: |
-          MAKE_ARG=-j bash -xe tools/ci/actions/runner.sh install
+          bash -xe tools/ci/actions/runner.sh install
       - name: Install Deps
         run: |
           sudo apt-get update -y
           sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended texlive-luatex hevea sass
       - name: Build Manual
         run: |
-          MAKE_ARG=-j bash -xe tools/ci/actions/runner.sh manual
+          DISCLAIMER=1 bash -xe tools/ci/actions/runner.sh manual
       - name: Checkout Pages
         uses: actions/checkout@v4
         with:
