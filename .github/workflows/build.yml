@@ -9,7 +9,32 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout OCaml
         uses: actions/checkout@v4
-      - name: Build
-        run: bash build.sh
+        with:
+          repository: ocaml/ocaml
+          path: ocaml
+      - name: Configure
+        run: |
+          MAKE_ARG=-j bash -xe ocaml/tools/ci/actions/runner.sh configure
+      - name: Build OCaml
+        run: |
+          MAKE_ARG=-j bash -xe ocaml/tools/ci/actions/runner.sh build
+      - name: Build Manual
+        run: |
+          MAKE_ARG=-j bash -xe ocaml/tools/ci/actions/runner.sh manual
+      - name: Checkout Pages
+        uses: actions/checkout@v4
+        with:
+          repository: nojb/prerelease-manual
+          ref: gh-pages
+      - name: Deploy
+        run: |
+          git rm '*'
+          mv ocaml/manual/src/webman/*/* .
+          { echo 'User-agent: *'; echo 'Disallow: /'; } > robots.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m generate
+          git push
